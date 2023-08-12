@@ -33,6 +33,10 @@ function forceTypechain() {
 const config: HardhatUserConfig = {
   networks: {
     hardhat: {
+      forking: {
+        url: `https://bscrpc.com`,
+        blockNumber: 30780000,
+      },
       initialDate: "1970-01-01T00:00:00Z",
     },
     localhost: {
