@@ -25,9 +25,8 @@ contract Swapper is Initializable, UUPSUpgradeable, OwnableUpgradeable {
         _setTokens(source_, destination_);
     }
 
-    function _setTokens(address source_, address destination_) internal {
-        source = IDexeToken(source_);
-        destination = IERC20(destination_);
+    function setTokens(address source_, address destination_) external onlyOwner {
+        _setTokens(source_, destination_);
     }
 
     function withdrawTokens(
@@ -50,6 +49,11 @@ contract Swapper is Initializable, UUPSUpgradeable, OwnableUpgradeable {
     function swapAll() external {
         uint256 amount = source.balanceOf(msg.sender);
         swap(amount);
+    }
+
+    function _setTokens(address source_, address destination_) internal {
+        source = IDexeToken(source_);
+        destination = IERC20(destination_);
     }
 
     function getImplementation() external view returns (address) {

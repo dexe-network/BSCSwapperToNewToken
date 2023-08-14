@@ -75,6 +75,12 @@ const config: HardhatUserConfig = {
       accounts: privateKey(),
       gasMultiplier: 1.2,
     },
+    bsctestnet: {
+      url: "https://data-seed-prebsc-1-s1.bnbchain.org:8545",
+      accounts: privateKey(),
+      gasPrice: 20000000000,
+    },
+
     ethereum: {
       url: `https://mainnet.infura.io/v3/${process.env.INFURA_KEY}`,
       accounts: privateKey(),

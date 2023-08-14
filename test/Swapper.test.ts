@@ -104,6 +104,22 @@ describe("Swapper", () => {
     });
   });
 
+  describe("setTokens()", () => {
+    beforeEach(async () => {
+      swapper.__Swapper_init(oldDexe.address, newDexe.address);
+    });
+
+    it("cant set token if not owner", async () => {
+      await expect(swapper.connect(SECOND).setTokens(newDexe.address, oldDexe.address)).to.be.revertedWith(
+        "Ownable: caller is not the owner"
+      );
+    });
+
+    it("can set token if owner", async () => {
+      await swapper.setTokens(newDexe.address, oldDexe.address);
+    });
+  });
+
   describe("proxy", () => {
     let erc1967: ERC1967Proxy;
     let proxy: Swapper;
